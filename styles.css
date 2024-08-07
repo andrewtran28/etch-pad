@@ -1,0 +1,10 @@
+.container {
+    background-color: pink;
+    border: 1px solid red;
+}
+
+.square {
+    height: 25px;
+    width: 25px;
+    border: 1px solid blue;
+}
