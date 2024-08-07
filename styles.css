@@ -4,7 +4,11 @@
 }
 
 .square {
+    flex: 1;
+    display: inline-flex;
+    flex-direction: row;
     height: 25px;
     width: 25px;
     border: 1px solid blue;
+    background-color: white;
 }
