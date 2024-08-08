@@ -7,8 +7,7 @@ const btn_erase = document.querySelector(".erase");
 const btn_randomize = document.querySelector(".randomize");
 
 let inputSize = 16;
-let brush = 2;
-let a = 0.1;
+let brush = 0;
 
 function createGrid (SQUARES_PER_SIZE) {
     const SQUARE_SIZE = 960 / SQUARES_PER_SIZE;
@@ -24,7 +23,7 @@ function createGrid (SQUARES_PER_SIZE) {
         canvas.appendChild(square);
         
         square.addEventListener("mouseenter", () => {
-            square.style.backgroundColor = "rgba(" + brushColour() + "," + a + ")";
+            square.style.backgroundColor = "rgb(" + brushColour() + ")";
         });
     }
 }
@@ -35,24 +34,21 @@ function brushColour() {
         r = 0;
         g = 0;
         b = 0;
-        a += 0.1;
     }
 
     else if (brush == 1) {
         r = 215;
         g = 215;
         b = 215;
-        a = 1;
     }
 
     else if(brush == 2) {
         r = Math.floor(Math.random()*256);
         g = Math.floor(Math.random()*256);
         b = Math.floor(Math.random()*256);
-        a += 0.1;
     }
 
-    return brushMode = r + "," + g  + "," + b;
+    return r + "," + g  + "," + b;
 }
 
 createGrid(16);
@@ -81,18 +77,18 @@ btn_normal.addEventListener("click", () => {
     btn_normal.style.backgroundColor = "gray";
     btn_erase.style.backgroundColor = "rgb(240, 240, 240)";
     btn_randomize.style.backgroundColor = "rgb(240, 240, 240)";
-})
+});
 
 btn_erase.addEventListener("click", () => {
     brush = 1;
     btn_normal.style.backgroundColor = "rgb(240, 240, 240)";
     btn_erase.style.backgroundColor = "gray";
     btn_randomize.style.backgroundColor = "rgb(240, 240, 240)";
-})
+});
 
 btn_randomize.addEventListener("click", () => {
     brush = 2;
     btn_normal.style.backgroundColor = "rgb(240, 240, 240)";
     btn_erase.style.backgroundColor = "rgb(240, 240, 240)";
     btn_randomize.style.backgroundColor = "gray";
-})
+});
