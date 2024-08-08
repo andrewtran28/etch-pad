@@ -1,35 +1,34 @@
 <!-- The Odin Project Etch-and-Sketch "Etch-Pad" Project -->
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Etch-Pad</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>The Etch-Pad</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
 
-<body>
-    <h1>The Etch-Pad</h1>
-
-    <div class="top-cont">
-        <button class="resize">Resize</button>
-        <button class="clear">Clear</button>
-    </div>
-
-    <div class="etchpad-cont">
-        <div class="title"></div>
-        <div class="canvas"></div>
-        <div class="brush-cont">
-            <div class="left-btns">
-                <button class="normal">Normal</button>
-                <button class="random">Random</button>
+    <body>
+        <div class="etchpad-cont">
+            <div class="header">
+                <h1>The Etch-Pad</h1>
             </div>
-
-            <button class="erase">Erase</button>
+            <div class="canvas"></div>
+            <div class="brush-cont">
+                <div class="left-btns">
+                    <button class="normal">Normal</button>
+                    <button class="random">Random</button>
+                </div>
+                <button class="erase">Erase</button>
+            </div>
         </div>
-    </div>
+        
+        <div class="bottom-cont">
+            <button class="resize">Resize</button>
+            <button class="clear">Clear</button>
+        </div>
 
-    <script src="scripts.js"></script>
+        <script src="scripts.js"></script>
 
-</body>
+    </body>
 </html>

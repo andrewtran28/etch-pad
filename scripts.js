@@ -4,7 +4,7 @@ const btn_resize = document.querySelector(".resize");
 const btn_clear = document.querySelector(".clear");
 const btn_normal = document.querySelector(".normal");
 const btn_erase = document.querySelector(".erase");
-const btn_randomize = document.querySelector(".random");
+const btn_random = document.querySelector(".random");
 
 let inputSize = 16;
 let brush = 0;
@@ -31,9 +31,9 @@ function createGrid (SQUARES_PER_SIZE) {
 function brushColour() {
 
     if (brush == 0) {
-        r = 40;
-        g = 40;
-        b = 40;
+        r = 50;
+        g = 50;
+        b = 50;
     }
 
     else if (brush == 1) {
@@ -43,12 +43,16 @@ function brushColour() {
     }
 
     else if(brush == 2) {
-        r = Math.floor(Math.random()*256);
-        g = Math.floor(Math.random()*256);
-        b = Math.floor(Math.random()*256);
+        r = randomColour();
+        g = randomColour();
+        b = randomColour();
     }
 
     return r + "," + g  + "," + b;
+}
+
+function randomColour() {
+    return Math.floor(Math.random()*256);
 }
 
 createGrid(16);
@@ -77,19 +81,22 @@ btn_normal.addEventListener("click", () => {
     brush = 0;
     btn_normal.style.backgroundColor = "gray";
     btn_erase.style.backgroundColor = "rgb(240, 240, 240)";
-    btn_randomize.style.backgroundColor = "rgb(240, 240, 240)";
+    btn_random.style.backgroundColor = "rgb(240, 240, 240)";
+    btn_random.style.color = "black";
 });
 
 btn_erase.addEventListener("click", () => {
     brush = 1;
     btn_normal.style.backgroundColor = "rgb(240, 240, 240)";
     btn_erase.style.backgroundColor = "gray";
-    btn_randomize.style.backgroundColor = "rgb(240, 240, 240)";
+    btn_random.style.backgroundColor = "rgb(240, 240, 240)";
+    btn_random.style.color = "black";
 });
 
-btn_randomize.addEventListener("click", () => {
+btn_random.addEventListener("click", () => {
     brush = 2;
     btn_normal.style.backgroundColor = "rgb(240, 240, 240)";
     btn_erase.style.backgroundColor = "rgb(240, 240, 240)";
-    btn_randomize.style.backgroundColor = "gray";
+    btn_random.style.backgroundColor = "rgb(" + randomColour() + "," + randomColour() + "," + randomColour() + ")";
+    btn_random.style.color = "rgb(" + randomColour() + "," + randomColour() + "," + randomColour() + ")";
 });
