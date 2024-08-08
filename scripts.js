@@ -1,10 +1,20 @@
 //Global Variables
 const canvas = document.querySelector(".container");
-const CANVAS_SIZE = 16;
+const btn_resize = document.querySelector(".resize");
+const btn_clear = document.querySelector(".clear");
+const btn_normal = document.querySelector(".normal");
+const btn_erase = document.querySelector(".erase");
+const btn_randomize = document.querySelector(".randomize");
 
-function createGrid (CANVAS_SIZE) {
-    const SQUARE_SIZE = 1080 / CANVAS_SIZE;
-    const TOTAL_SQUARES = CANVAS_SIZE * CANVAS_SIZE;
+let inputSize = 16;
+let brush = 2;
+let a = 0.1;
+
+function createGrid (SQUARES_PER_SIZE) {
+    const SQUARE_SIZE = 960 / SQUARES_PER_SIZE;
+    const TOTAL_SQUARES = SQUARES_PER_SIZE * SQUARES_PER_SIZE;
+
+    canvas.innerHTML = "";
 
     for (let i = 0; i < TOTAL_SQUARES; i++) {
         let square = document.createElement("div");
@@ -14,14 +24,75 @@ function createGrid (CANVAS_SIZE) {
         canvas.appendChild(square);
         
         square.addEventListener("mouseenter", () => {
-            //mouse event listener function to replace here
-            square.style.backgroundColor = 'green';
-        });
-        
-        square.addEventListener("mouseleave", () => {
-            square.style.backgroundColor = 'white';
+            square.style.backgroundColor = "rgba(" + brushColour() + "," + a + ")";
         });
     }
 }
 
-createGrid(CANVAS_SIZE);
+function brushColour() {
+
+    if (brush == 0) {
+        r = 0;
+        g = 0;
+        b = 0;
+        a += 0.1;
+    }
+
+    else if (brush == 1) {
+        r = 215;
+        g = 215;
+        b = 215;
+        a = 1;
+    }
+
+    else if(brush == 2) {
+        r = Math.floor(Math.random()*256);
+        g = Math.floor(Math.random()*256);
+        b = Math.floor(Math.random()*256);
+        a += 0.1;
+    }
+
+    return brushMode = r + "," + g  + "," + b;
+}
+
+createGrid(16);
+
+btn_resize.addEventListener("click", () => {
+    inputSize = parseInt(prompt("Enter the number of squares per side of the Etch-Pad. Number must be between 1-100"));
+
+    if (inputSize > 0 && inputSize < 100) {
+        createGrid(inputSize);
+    }
+
+    else {
+        while (!(inputSize > 0 && inputSize < 100)) {
+            inputSize = parseInt(prompt("Enter the number of squares per side of the Etch-Pad.\n\nNote: The input must be a number between 1-100."));
+            createGrid(inputSize);
+        }
+    }
+});
+
+btn_clear.addEventListener("click", () => {
+    createGrid(inputSize);
+});
+
+btn_normal.addEventListener("click", () => {
+    brush = 0;
+    btn_normal.style.backgroundColor = "gray";
+    btn_erase.style.backgroundColor = "rgb(240, 240, 240)";
+    btn_randomize.style.backgroundColor = "rgb(240, 240, 240)";
+})
+
+btn_erase.addEventListener("click", () => {
+    brush = 1;
+    btn_normal.style.backgroundColor = "rgb(240, 240, 240)";
+    btn_erase.style.backgroundColor = "gray";
+    btn_randomize.style.backgroundColor = "rgb(240, 240, 240)";
+})
+
+btn_randomize.addEventListener("click", () => {
+    brush = 2;
+    btn_normal.style.backgroundColor = "rgb(240, 240, 240)";
+    btn_erase.style.backgroundColor = "rgb(240, 240, 240)";
+    btn_randomize.style.backgroundColor = "gray";
+})
