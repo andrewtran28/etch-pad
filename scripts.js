@@ -58,19 +58,16 @@ function randomColour() {
 createGrid(16);
 
 btn_resize.addEventListener("click", () => {
-    inputSize = parseInt(prompt("Enter the number of squares per side of the Etch-Pad. Number must be between 1-100"));
+    let newSize = parseInt(prompt("Enter the number of squares per side of the Etch-Pad.\n\nNote: Number must be between 1-100."));
 
-    if (inputSize > 0 && inputSize <= 100) {
+    if (newSize > 0 && newSize <= 100) {
+        inputSize = newSize;
         createGrid(inputSize);
     }
 
     else {
-        while (!(inputSize > 0 && inputSize <= 100)) {
-            inputSize = parseInt(prompt("Enter the number of squares per side of the Etch-Pad.\n\nNote: The input must be a number between 1-100."));
-        }
+        window.alert("Etch-Pad canvas size must be a number between 1-100.");
     }
-
-    createGrid(inputSize);
 });
 
 btn_clear.addEventListener("click", () => {
