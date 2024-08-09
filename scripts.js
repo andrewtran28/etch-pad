@@ -1,5 +1,6 @@
 //Global Variables
 const canvas = document.querySelector(".canvas");
+const toggleBrush = document.querySelector(".toggleBrush");
 const btn_resize = document.querySelector(".resize");
 const btn_clear = document.querySelector(".clear");
 const btn_normal = document.querySelector(".normal");
@@ -8,6 +9,7 @@ const btn_random = document.querySelector(".random");
 
 let inputSize = 16;
 let brush = 0;
+let toggle = 1;
 
 function createGrid (SQUARES_PER_SIZE) {
     const SQUARE_SIZE = 720 / SQUARES_PER_SIZE;
@@ -21,15 +23,16 @@ function createGrid (SQUARES_PER_SIZE) {
         square.style.width = `${SQUARE_SIZE}px`;
         square.style.height = `${SQUARE_SIZE}px`;
         canvas.appendChild(square);
-        
-        square.addEventListener("mouseenter", () => {
-            square.style.backgroundColor = "rgb(" + brushColour() + ")";
+
+        square.addEventListener("mouseover", () => {
+            if (toggle == true) {
+                square.style.backgroundColor = "rgb(" + brushColour() + ")";
+            }
         });
     }
 }
 
 function brushColour() {
-
     if (brush == 0) {
         r = 50;
         g = 50;
@@ -56,6 +59,18 @@ function randomColour() {
 }
 
 createGrid(16);
+
+canvas.addEventListener("click", () => {
+    if (toggle == true) {
+        toggle = !toggle;
+        toggleBrush.textContent = "Brush: OFF";
+    }
+
+    else if (toggle == false) {
+        toggle = !toggle;
+        toggleBrush.textContent = "Brush: ON";
+    }
+});
 
 btn_resize.addEventListener("click", () => {
     let newSize = parseInt(prompt("Enter the number of squares per side of the Etch-Pad.\n\nNote: Number must be between 1-100."));
