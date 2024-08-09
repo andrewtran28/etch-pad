@@ -13,9 +13,9 @@ let brush = 0;
 let toggle = 1;
 let toggleGrid = true;
 
-function createGrid (SQUARES_PER_SIZE) {
-    const SQUARE_SIZE = 720 / SQUARES_PER_SIZE;
-    const TOTAL_SQUARES = SQUARES_PER_SIZE * SQUARES_PER_SIZE;
+function createGrid (SQUARES_PER_SIDE) {
+    const SQUARE_SIZE = 720 / SQUARES_PER_SIDE; //Evenly divides squares within 720px (The size of the Etch-Pad).
+    const TOTAL_SQUARES = SQUARES_PER_SIDE * SQUARES_PER_SIDE;
 
     canvas.innerHTML = "";
 
@@ -35,19 +35,19 @@ function createGrid (SQUARES_PER_SIZE) {
 }
 
 function brushColour() {
-    if (brush == 0) {
+    if (brush == 0) {       //Normal colour
         r = 50;
         g = 50;
         b = 50;
     }
 
-    else if (brush == 1) {
+    else if (brush == 1) {  //Erase mode
         r = 215;
         g = 215;
         b = 215;
     }
 
-    else if(brush == 2) {
+    else if(brush == 2) {   //Randomize colour
         r = randomColour();
         g = randomColour();
         b = randomColour();
@@ -60,7 +60,7 @@ function randomColour() {
     return Math.floor(Math.random()*256);
 }
 
-createGrid(16);
+createGrid(inputSize);
 
 canvas.addEventListener("click", () => {
     if (toggle == true) {
@@ -76,6 +76,7 @@ canvas.addEventListener("click", () => {
 
 btn_grid.addEventListener("click", () => {
     const grid = document.querySelectorAll(".square");
+    
     if (toggleGrid == true) {
         btn_grid.textContent = "Grid: OFF";
         grid.forEach(square => {
