@@ -31,6 +31,12 @@ function createGrid (SQUARES_PER_SIDE) {
                 square.style.backgroundColor = "rgb(" + brushColour() + ")";
             }
         });
+
+        square.addEventListener("click", () => {
+            if (toggle == false) {
+                square.style.backgroundColor = "rgb(" + brushColour() + ")";
+            }
+        });
     }
 }
 
