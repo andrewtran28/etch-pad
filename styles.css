@@ -1,9 +1,11 @@
 body {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     height: 100vh;
+    margin: 0;
+    padding: 0;
     background-color: #5e9cd6;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
@@ -140,5 +142,4 @@ button:hover {
     padding: 10px 0;
     bottom: 0;
     width: 100%;
-    position: relative;
 }
